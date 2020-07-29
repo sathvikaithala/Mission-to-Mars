@@ -15,13 +15,13 @@ mongo = PyMongo(app) # is the URI we’ll be using to connect our app to Mongo. 
 # one for the main HTML page everyone will view when visiting the web app, 
 # and one to actually scrape new data using the code we’ve written.
  
- @app.route("/")
+@app.route("/")
 def index():
    mars = mongo.db.mars.find_one()
    return render_template("index.html", mars=mars)
 
 
- @app.route("/scrape")
+@app.route("/scrape")
 def scrape():
    mars = mongo.db.mars
    mars_data = scraping.scrape_all()
@@ -29,5 +29,5 @@ def scrape():
    return "Scraping Successful!"  
 
 
- if __name__ == "__main__":
+if __name__ == "__main__":
    app.run()  
